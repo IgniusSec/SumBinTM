@@ -1,0 +1,160 @@
+; Criar um programa que soma binários:
+; ex 1: 0 + 0 = 0
+; ex 2: 1 + 0 = 1
+; ex 3: 0 + 1 = 1
+; ex 4: 1 + 1 = 10
+
+; posiciona antes do sinal de +
+0 + + l 10
+0 * * r 0
+
+
+; define se é 0 ou 1
+10 U U l 10
+10 Z Z l 10
+10 1 U r 50
+10 0 Z r 60
+10 _ _ r 504
+10 * * r 100
+
+; posiciona no ultimo digito do 2° bi
+50 = = l 51
+50 * * r 50
+
+60 = = l 61
+60 * * r 60
+
+; define se é 0 ou 1 2° bin
+51 U U l 51
+51 Z Z l 51
+51 0 Z r 52
+51 1 U r 53
+51 + + * 404 
+
+; se 1 no 1°
+52 _ U l 200
+52 * * r 52
+
+53 _ Z r 54
+53 * * r 53
+
+54 _ U l 200
+
+61 U U l 61
+61 Z Z l 61
+61 1 U r 62
+61 0 Z r 63
+61 + + * 405 
+
+; se 0 no 1°
+63 _ Z l 200
+63 * * r 63
+
+62 _ U l 200
+62 * * r 62
+
+;retorna ponteiro para antes do +
+200 + + l 10
+200 * * l 200
+
+;se 1° maior que 2°, copia o resto do 1° no resultado
+404 _ _ r 100
+404 1 U r 408
+404 0 Z r 409
+404 * * l 404
+
+; escreve numero no final
+408 _ U l 404
+408 * * r 408
+
+409 _ Z l 404
+409 * * r 409
+
+; se 2° maior que 1°
+; posiciona cursor no 2° bin
+504 = = l 505
+504 * * r 504 
+
+505 + + r 100 
+505 1 U r 506
+505 0 Z r 507
+505 * * l 505
+
+; escreve numero no final
+506 _ U l 504
+506 * * r 506
+
+507 _ Z l 504
+507 * * r 507
+
+
+; ao finalizar
+; retorna os binarios iniciais
+100 _ _ r 101
+100 * * l 100 
+
+101 U 1 r 101
+101 Z 0 r 101
+101 + + r 101
+101 = = r 102
+
+; posiciona cursor no final do resultado
+102 _ _ l 103
+102 1 1 l 103
+102 0 0 l 103
+102 * * r 102
+
+;verifica se há mais de 1 char
+103 1 1 * halt
+103 0 0 * halt
+103 U U l 104
+103 Z Z l 104
+103 _ _ l 104
+
+104 = = r 105
+104 1 1 r 105
+104 0 0 r 105
+104 * * r 106
+
+105 U 1 * halt
+105 Z 0 * halt
+
+;bate volta
+106 _ _ l 107 
+106 1 1 l 107
+106 0 0 l 107
+106 * * r 106
+
+107 U U l 108
+107 Z Z l 109
+
+108 _ _ r 110 
+108 1 1 r 110
+108 0 0 r 110
+108 = = r 110
+108 * * l 108
+
+109 _ _ r 111 
+109 1 1 r 111
+109 0 0 r 111
+109 * * l 109
+
+110 U 1 r 112 
+110 Z 1 r 113
+
+111 U 0 r 112
+111 Z 0 r 113
+
+112 _ _ l 114 
+112 1 1 l 114
+112 0 0 l 114
+112 * * r 112
+
+113 _ _ l 115 
+113 1 1 l 115
+113 0 0 l 115
+113 * * r 113
+
+114 * 1 l 103
+115 * 0 l 103
+
