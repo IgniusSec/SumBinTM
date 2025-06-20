@@ -17,10 +17,12 @@
 10 _ _ r 504
 10 * * r 100
 
-; posiciona no ultimo digito do 2° bi
+; posiciona no ultimo digito do 2° bin
+;1° = 1
 50 = = l 51
 50 * * r 50
 
+;1° = 0
 60 = = l 61
 60 * * r 60
 
@@ -29,11 +31,14 @@
 51 Z Z l 51
 51 0 Z r 52
 51 1 U r 53
-51 + + * 404 
+51 + + * 56 
 
 ; se 1 no 1°
 52 _ U l 200
 52 * * r 52
+
+56 _ U l 404
+56 * * r 56
 
 53 _ Z r 54
 53 * * r 53
@@ -81,12 +86,17 @@
 505 * * l 505
 
 ; escreve numero no final
-506 _ U l 504
+506 _ U l 508
 506 * * r 506
 
-507 _ Z l 504
+507 _ Z l 508
 507 * * r 507
 
+;reposiciona cursor no 2° bin:
+508 + + * 100
+508 1 1 * 505
+508 0 0 * 505
+508 * * l 508
 
 ; ao finalizar
 ; retorna os binarios iniciais
