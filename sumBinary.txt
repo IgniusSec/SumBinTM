@@ -33,7 +33,7 @@
 702 * V l 200
 
 ; vai 1 1° maior q 2°
-701 _ U l 404
+701 _ V l 404
 
 ; define se é 0 ou 1 2° bin
 51 U U l 51
@@ -87,9 +87,13 @@
 
 ; escreve numero no final
 408 _ U l 404
+408 V Z r 410
 408 * * r 408
+410 _ U l 404
+
 
 409 _ Z l 404
+409 V U l 404
 409 * * r 409
 
 ; se 2° maior que 1°
