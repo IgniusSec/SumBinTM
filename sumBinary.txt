@@ -108,9 +108,12 @@
 
 ; escreve numero no final
 506 _ U l 508
+506 V Z r 509
 506 * * r 506
+509 _ U l 508
 
 507 _ Z l 508
+507 V U l 508
 507 * * r 507
 
 ;reposiciona cursor no 2° bin:
